@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: hello-backstage
+  annotations:
+    argocd/app-name: hello-backstage
+    grafana/dashboard-selector: hello-backstage
+    prometheus.io/alert: 'hello-backstage-ServiceDown'
+    github.com/project-slug: 'modridi/hello-backstage'
+  links:
+    - url: http://hello-backstage.apps.kind-cluster.172-20-0-100.nip.io
+      title: Home page
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:default/guests
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: hello-backstage
+spec:
+  type: s3-bucket
+  owner: group:default/guests
+  dependencyOf:
+  - component:default/hello-backstage

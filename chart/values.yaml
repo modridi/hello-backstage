@@ -1,0 +1,13 @@
+prometheus-blackbox-exporter:
+  serviceMonitor:
+    enabled: true
+    targets:
+      - name: hello-backstage-health
+        url: http://hello-backstage
+        interval: 30s
+        module: http_2xx
+
+image:
+  name: ghcr.io/modridi/hello-backstage
+  tag: latest
+  host: place_holder

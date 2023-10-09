@@ -1,0 +1,10 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: hello-backstage-alerts
+spec:
+  groups:
+  - name: hello-backstage-alerts
+    rules:
+    - alert: hello-backstage-ServiceDown
+      expr: probe_success{target="hello-backstage-health"} != 1
